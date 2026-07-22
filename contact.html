@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Secure Stackly Communication</title>
+  <meta name="description" content="Get in touch with Stackly: Submit secure inquiries, request flight simulations, locate global offices, or join our R&D departments.">
+  <link rel="stylesheet" href="css/global.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div class="page-transition-overlay"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo hover-target">
+      <img src="stackly logo.webp" alt="Stackly" style="height: 40px; width: auto; object-fit: contain;">
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link hover-target">Home</a>
+      <a href="solutions.html" class="nav-link hover-target">Solutions</a>
+      <a href="industries.html" class="nav-link hover-target">Industries</a>
+      <a href="about.html" class="nav-link hover-target">About</a>
+      <a href="contact.html" class="nav-link active hover-target">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-primary hover-target" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Login</a>
+      <a href="signup.html" class="btn btn-secondary hover-target" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN PAGE WRAPPER ==================== -->
+  <main id="main-content">
+
+    <!-- 1. HERO SECTION -->
+    <section class="section" id="contact-hero" style="padding-top: 150px; min-height: 70vh; position: relative; overflow: hidden;">
+      <div class="blueprint-grid" style="opacity: 0.3;"></div>
+      <!-- Battle drone canvas -->
+      <div id="contact-drone-container" style="position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;max-width:100vw;"></div>
+      <div class="container" style="z-index: 3; position: relative;">
+        <div class="section-label">SECURE COMMUNICATIONS</div>
+        <h1 class="text-reveal" style="max-width: 900px; margin-bottom: 2rem;">Establish<br>Connection</h1>
+        <p style="max-width: 600px; font-size: 1.2rem;">
+          Connect with our technical advisors, request hardware simulation runs, or submit secure project requirements.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. CONTACT FORM SECTION -->
+    <section class="section" id="contact-form-sec" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="editorial-grid">
+          <div class="fade-up" style="grid-column: span 5;">
+            <div class="section-label">INQUIRY PATHWAY</div>
+            <h2>Secure Transmission</h2>
+            <p style="margin-top: 1.5rem; max-width: 380px;">
+              Form data is encrypted locally using AES-256 before transport. Standard response time is 12 hours.
+            </p>
+          </div>
+          
+          <div class="fade-up" style="grid-column: span 7; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 3rem;">
+            <form onsubmit="event.preventDefault(); window.location.href='404.html';" style="display: flex; flex-direction: column; gap: 2rem;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <label style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-sec);">FULL NAME</label>
+                  <input type="text" required style="border: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; outline: none; font-family: var(--font-body); font-size: 0.95rem;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                  <label style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-sec);">ORGANIZATION / COUNTRY</label>
+                  <input type="text" required style="border: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; outline: none; font-family: var(--font-body); font-size: 0.95rem;">
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-sec);">SECURE CORRESPONDENCE EMAIL</label>
+                <input type="email" required style="border: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; outline: none; font-family: var(--font-body); font-size: 0.95rem;">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-sec);">CLASSIFICATION / SUBJECT</label>
+                <select style="border: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; outline: none; font-family: var(--font-body); font-size: 0.95rem; background: transparent;">
+                  <option>COMMERCIAL PROCUREMENT</option>
+                  <option>GOVERNMENT/MILITARY INQUIRY</option>
+                  <option>RESEARCH COLLABORATION</option>
+                  <option>CAREERS SECURE SCREENING</option>
+                </select>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-sec);">TRANSMISSION DETAIL</label>
+                <textarea required rows="4" style="border: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; outline: none; font-family: var(--font-body); font-size: 0.95rem; resize: none;"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary hover-target" style="align-self: flex-start; margin-top: 1rem;">Transmit Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. GLOBAL OFFICES SECTION -->
+    <section class="section" id="global-offices">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">OPERATIONS CELLS</div>
+          <h2>Global Coordination Hubs</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+          <div class="editorial-card fade-up hover-target" style="padding: 2rem;">
+            <img src="assets/loc_austin.webp" alt="Austin HQ" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem;">
+            <span class="card-index">HQ // AUSTIN</span>
+            <h4 style="margin-bottom: 0.5rem;">USA DIVISION</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 1.5rem;">305 Vanguard Way, Suite 100, Austin, TX 78701</p>
+            <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: #000; font-weight: bold;">US-OFFICE@Stackly.SEC</span>
+          </div>
+          <div class="editorial-card fade-up hover-target" style="padding: 2rem;">
+            <img src="assets/loc_munich.webp" alt="Munich Lab" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem;">
+            <span class="card-index">LAB // MUNICH</span>
+            <h4 style="margin-bottom: 0.5rem;">EUROPE DIVISION</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 1.5rem;">Maximilianstraße 45, 80539 München, Germany</p>
+            <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: #000; font-weight: bold;">EU-OFFICE@Stackly.SEC</span>
+          </div>
+          <div class="editorial-card fade-up hover-target" style="padding: 2rem;">
+            <img src="assets/loc_tokyo.webp" alt="Tokyo Office" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem;">
+            <span class="card-index">CELL // TOKYO</span>
+            <h4 style="margin-bottom: 0.5rem;">APAC DIVISION</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 1.5rem;">1-2-1 Otemachi, Chiyoda-ku, Tokyo 100-0004</p>
+            <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: #000; font-weight: bold;">APAC-OFFICE@Stackly.SEC</span>
+          </div>
+          <div class="editorial-card fade-up hover-target" style="padding: 2rem;">
+            <img src="assets/loc_canberra.webp" alt="Canberra Outpost" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem;">
+            <span class="card-index">OUTPOST // CANBERRA</span>
+            <h4 style="margin-bottom: 0.5rem;">OCEANIA DIVISION</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 1.5rem;">15 Constitution Ave, Canberra ACT 2601</p>
+            <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: #000; font-weight: bold;">AU-OFFICE@Stackly.SEC</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TECHNICAL SUPPORT SECTION -->
+    <section class="section" id="technical-support" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 5;">
+            <div class="section-label">CLASSIFIED NODE</div>
+            <h2>Operational Support</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              Registered defense operators can establish secure VPN lines using tactical software keys. Direct satellite support voice links are active 24/7/365.
+            </p>
+            <a href="contact.html" onclick="event.preventDefault(); alert('Redirecting to secure login terminal...');" class="btn btn-secondary hover-target">Access Operator Portal</a>
+          </div>
+
+          <div class="fade-up" style="grid-column: span 7; border: 1px solid var(--border); border-radius: 12px; padding: 2rem; background: var(--bg); font-family: 'IBM Plex Sans', monospace; font-size: 0.75rem;">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+              <span style="width: 8px; height: 8px; background: #000; border-radius: 50%;"></span>
+              <span style="width: 8px; height: 8px; background: #eaeaea; border-radius: 50%;"></span>
+              <span style="width: 8px; height: 8px; background: #eaeaea; border-radius: 50%;"></span>
+            </div>
+            <div style="line-height: 1.8; color: var(--text-sec);">
+              <span style="color: #000;">$ agy-remote-sync --target secure-terminal.Stackly.sec</span><br>
+              <span>CONNECTING VIA AUSTIN VPN GATEWAY... STATUS: OK</span><br>
+              <span>AUTHENTICATING CERTIFICATE CLEARANCE LEVEL L-3... APPROVED</span><br>
+              <span>PULLING LATEST FLIGHT PATCH VER. 4.21.9... SYNC COMPLETED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. REQUEST DEMO SECTION -->
+    <section class="section" id="request-demo">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 6;">
+            <div style="border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--card-bg);">
+              <img src="assets/simulator.webp" alt="Virtual Flight Simulator" style="width: 100%; height: 220px; object-fit: cover;">
+              <div style="padding: 3rem;">
+              <h3 style="text-transform: uppercase; margin-bottom: 1.5rem;">Virtual Flight Simulator</h3>
+              <p style="margin-bottom: 2.5rem; font-size: 0.95rem;">
+                Operators can book a 1-hour secure video session to test flight path telemetry on our synthetic test framework twin.
+              </p>
+              <form onsubmit="event.preventDefault(); window.location.href='404.html';">
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;">
+                  <input type="text" placeholder="Preferred Date" required onfocus="(this.type='date')" style="border: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; outline: none; background: transparent; font-family: var(--font-body);">
+                  <input type="text" placeholder="Government/Military Agency ID" required style="border: none; border-bottom: 1px solid var(--border); padding: 0.5rem 0; outline: none; background: transparent; font-family: var(--font-body);">
+                </div>
+                <button type="submit" class="btn btn-primary hover-target" style="width: 100%;">Book Virtual Run</button>
+              </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-up" style="grid-column: span 6; padding-left: 3rem;">
+            <div class="section-label">SIMULATOR RUNS</div>
+            <h2>Verify Before Deployment</h2>
+            <p style="margin-top: 1.5rem;">
+              We run simulated storm cycles, physical radar blocking matrices, and electronic signal jamming sweeps to demonstrate the AV-4 Vindicator's autonomous resilience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CAREERS SECTION -->
+    <section class="section" id="contact-careers" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">CAREERS</div>
+          <h2>Join the Laboratory</h2>
+          <p style="margin-top: 1rem;">We are seeking talented flight system developers, sensor physicists, and AI architects.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+          <div class="editorial-card fade-up hover-target" style="background: #ffffff;">
+            <img src="assets/career_ai.webp" alt="Edge Vision Scientist" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem;">
+            <span class="card-index">AUSTIN // HYBRID-R</span>
+            <h3>Edge Vision Scientist</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Develop localized target tracking convolutional networks that run on low-voltage edge boards.</p>
+            <a href="contact.html" onclick="event.preventDefault(); alert('Redirecting to Secure Application form...');" style="text-decoration: none; font-size: 0.75rem; color: #000; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">APPLY SECURELY</a>
+          </div>
+          <div class="editorial-card fade-up hover-target" style="background: #ffffff;">
+            <img src="assets/career_aero.webp" alt="Aerodynamics Lead" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem;">
+            <span class="card-index">MUNICH // ON-SITE</span>
+            <h3>Aerodynamics Lead</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Direct wind tunnel calibration runs and lead development on VTOL carbon composite chassis layers.</p>
+            <a href="contact.html" onclick="event.preventDefault(); alert('Redirecting to Secure Application form...');" style="text-decoration: none; font-size: 0.75rem; color: #000; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">APPLY SECURELY</a>
+          </div>
+          <div class="editorial-card fade-up hover-target" style="background: #ffffff;">
+            <img src="assets/career_chip.webp" alt="Microchip Compiler Lead" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem;">
+            <span class="card-index">TOKYO // REMOTE-JP</span>
+            <h3>Microchip compiler Lead</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Construct compiler optimizations to parse sensor matrix commands in less than 5 milliseconds.</p>
+            <a href="contact.html" onclick="event.preventDefault(); alert('Redirecting to Secure Application form...');" style="text-decoration: none; font-size: 0.75rem; color: #000; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">APPLY SECURELY</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INTERACTIVE MAP SECTION -->
+    <section class="section" id="contact-map" style="padding: 0; min-height: 60vh;">
+      <div style="position: relative; width: 100%; height: 60vh; overflow: hidden;">
+        <img src="assets/emergency_ind.webp" alt="Global Satellite Ground Network" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%) brightness(0.85);">
+        <div class="blueprint-grid" style="opacity: 0.2; position: absolute; inset: 0;"></div>
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 3; font-family: 'IBM Plex Sans', monospace; font-size: 0.75rem;">
+          <div>
+            <p style="font-weight: 700; color: #ffffff; font-size: 0.9rem; letter-spacing: 0.1em;">SATELLITE GROUND RECEIVER GRID ACTIVE</p>
+            <p style="color: rgba(255,255,255,0.7); margin-top: 0.5rem;">COORD TRACKING: AUSTIN — MUNICH — TOKYO — CANBERRA</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. NEWSLETTER SECTION -->
+    <section class="section" id="intel-briefing" style="background: var(--bg-sec); min-height: 60vh;">
+      <div class="container" style="text-align: center; max-width: 700px; margin: 0 auto; z-index: 3; position: relative;">
+        <div class="section-label" style="justify-content: center; margin-bottom: 2rem;">INTEL BRIEFING</div>
+        <h2 style="font-size: clamp(2rem, 3.5vw, 3.5rem); text-transform: uppercase; margin-bottom: 1.5rem;">Access Classified Updates</h2>
+        <p style="color: var(--text-sec); margin-bottom: 3rem;">
+          Subscribe to receive monthly analysis of international threat landscapes and private hardware launches.
+        </p>
+        
+        <form onsubmit="event.preventDefault(); window.location.href='404.html';" style="display: flex; gap: 1rem; max-width: 500px; margin: 0 auto;">
+          <input type="email" placeholder="Enter secure corporate email" required style="flex: 1; border: 1px solid var(--border); padding: 0.9rem 1.5rem; outline: none; border-radius: var(--border-radius); font-family: var(--font-body); font-size: 0.95rem; background: var(--bg);">
+          <button type="submit" class="btn btn-primary hover-target">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="stackly logo.webp" alt="Stackly" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 0.5rem; display: block;">
+        <p>Next-generation autonomous aerospace, intelligence grids, and perimeter defense software.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="Twitter / X">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Quick Links</h3>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="hover-target">Home</a></li>
+          <li><a href="solutions.html" class="hover-target">Solutions</a></li>
+          <li><a href="industries.html" class="hover-target">Industries</a></li>
+          <li><a href="about.html" class="hover-target">About</a></li>
+          <li><a href="contact.html" class="hover-target">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Sectors</h3>
+        <ul class="footer-links-list">
+          <li><a href="404.html" class="hover-target">Armed Forces</a></li>
+          <li><a href="404.html" class="hover-target">Border Outposts</a></li>
+          <li><a href="404.html" class="hover-target">Energy Infrastructure</a></li>
+          <li><a href="404.html" class="hover-target">Maritime Command</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Contact Us</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text); font-weight: 600;">+91 74880 99999</p>
+        <p style="font-size: 0.9rem; margin-bottom: 1rem;"><a href="404.html" class="hover-target" style="color: var(--text-sec); text-decoration: none;">info@stackly.com</a></p>
+        <p style="font-size: 0.85rem; color: var(--text-sec); line-height: 1.5; font-family: var(--font-body);">
+          MMR Complex, Salem - 636 003,<br>
+          Tamil Nadu, India
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+ 
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Stackly. All rights reserved. Sovereign defense manufacturing.</span>
+      <div style="display: flex; gap: 2rem;">
+        <a href="404.html" class="hover-target" style="text-decoration: none; font-size: 0.8rem; color: var(--text-sec);">R&D Lab</a>
+        <a href="404.html" class="hover-target" style="text-decoration: none; font-size: 0.8rem; color: var(--text-sec);">Terms of Clearance</a>
+      </div>
+    </div>
+    <div class="footer-watermark">CONTACT</div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/contact_battle_drones.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src=js/auth.js></script><script>document.addEventListener('DOMContentLoaded',function(){updateNavAuth();});</script></body>
+</html>

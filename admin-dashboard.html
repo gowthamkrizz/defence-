@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard — Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f7f8fa; color: #000; min-height: 100vh; display: flex; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 240px;
+      background: #0a0a0a;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; padding: 2rem 1.5rem; z-index: 100;
+    }
+    .sidebar-logo { margin-bottom: 2rem; }
+    .sidebar-logo img { height: 32px; }
+    .admin-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 100px; padding: 0.25rem 0.75rem;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      color: #f87171; text-transform: uppercase; margin-bottom: 2rem;
+    }
+    .admin-badge span { width: 5px; height: 5px; border-radius: 50%; background: #ef4444; display: inline-block; animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .sidebar-section-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin: 1rem 0 0.5rem 0.75rem; }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 0.2rem; flex: 1; }
+    .nav-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.65rem 1rem; border-radius: 8px;
+      color: rgba(255,255,255,0.45); font-size: 0.86rem; font-weight: 500;
+      text-decoration: none; cursor: pointer; border: none; background: none;
+      width: 100%; text-align: left; transition: all 0.2s;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
+    .nav-item.active { background: rgba(255,255,255,0.1); color: #fff; font-weight: 600; }
+    .nav-item svg { flex-shrink: 0; opacity: 0.6; }
+    .nav-item.active svg, .nav-item:hover svg { opacity: 1; }
+    .badge-count {
+      margin-left: auto; background: #ef4444; color: #fff;
+      border-radius: 100px; padding: 0.1rem 0.5rem; font-size: 0.65rem; font-weight: 700;
+    }
+    .sidebar-footer { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; }
+    .user-pill { display: flex; align-items: center; gap: 0.75rem; }
+    .user-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg,#ef4444,#b91c1c);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; color: #fff; flex-shrink: 0;
+    }
+    .user-info { flex: 1; min-width: 0; }
+    .user-info .name { font-size: 0.82rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-info .role { font-size: 0.68rem; color: #f87171; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+    .logout-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.3); padding: 0.3rem; transition: color 0.2s; }
+    .logout-btn:hover { color: #fff; }
+
+    /* ── MAIN ── */
+    .main { margin-left: 240px; padding: 2.5rem 3rem; min-height: 100vh; flex: 1; }
+    
+    /* PAGE SECTIONS */
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem; }
+    .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; }
+    .page-header p { font-size: 0.9rem; color: #888; margin-top: 0.25rem; }
+    .header-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .header-badge-red {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #fff; border: 1px solid #fecaca; border-radius: 100px;
+      padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 600; color: #dc2626;
+    }
+    .header-badge-red span { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; animation: pulse 1.5s ease-in-out infinite; }
+
+    /* ── STAT CARDS ── */
+    .stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-bottom: 2rem; }
+    .stat-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 14px; padding: 1.5rem; }
+    .stat-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 0.75rem; }
+    .stat-value { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #000; line-height: 1; margin-bottom: 0.5rem; }
+    .stat-change { font-size: 0.78rem; color: #22c55e; font-weight: 600; }
+    .stat-change.down { color: #ef4444; }
+    .stat-change.neutral { color: #f59e0b; }
+
+    /* ── CONTENT ── */
+    .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .card { background: #fff; border: 1px solid #e5e5e5; border-radius: 14px; padding: 1.75rem; margin-bottom: 1.5rem; }
+    .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .card-title span { font-size: 0.78rem; font-weight: 600; color: #888; text-decoration: none; }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    th { text-align: left; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; padding-bottom: 0.75rem; border-bottom: 1px solid #f0f0f0; }
+    td { padding: 0.85rem 0; border-bottom: 1px solid #f7f7f7; color: #333; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    .status-pill {
+      display: inline-block; padding: 0.2rem 0.65rem;
+      border-radius: 100px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .status-pill.active { background: #f0fdf4; color: #16a34a; }
+    .status-pill.pending { background: #fffbeb; color: #d97706; }
+    .status-pill.inactive { background: #f5f5f5; color: #888; }
+    .status-pill.admin { background: #fef2f2; color: #dc2626; }
+
+    /* Action buttons in tables */
+    .table-action-btn {
+      padding: 0.35rem 0.7rem; border: 1px solid #e5e5e5; border-radius: 6px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+      background: #fafafa; cursor: pointer; transition: all 0.2s;
+    }
+    .table-action-btn:hover { background: #000; color: #fff; border-color: #000; }
+    .table-action-btn.danger:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
+
+    /* System health */
+    .health-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .health-item { display: flex; flex-direction: column; gap: 0.4rem; }
+    .health-header { display: flex; justify-content: space-between; font-size: 0.84rem; font-weight: 600; }
+    .health-bar { height: 6px; background: #f0f0f0; border-radius: 3px; overflow: hidden; }
+    .health-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+    .health-fill.green  { background: #22c55e; }
+    .health-fill.blue   { background: #3b82f6; }
+    .health-fill.amber  { background: #f59e0b; }
+    .health-fill.red    { background: #ef4444; }
+
+    /* Admin actions */
+    .admin-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+    .action-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      padding: 0.85rem 1rem; border: 1.5px solid #e5e5e5; border-radius: 10px;
+      background: #fafafa; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; color: #333;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .action-btn:hover { border-color: #000; background: #fff; color: #000; }
+    .action-btn.danger:hover { border-color: #ef4444; background: #fff5f5; color: #dc2626; }
+
+    /* Form groups */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.1rem; }
+    .form-group label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; }
+    .form-group input, .form-group select {
+      border: 1px solid #e5e5e5; border-radius: 9px; padding: 0.78rem 0.9rem;
+      outline: none; font-family: 'Inter', sans-serif; font-size: 0.88rem; color: #000;
+      background: #fafafa; transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: #000; background: #fff; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+    .submit-btn {
+      padding: 0.82rem 2rem; background: #000; color: #fff; border: none; border-radius: 9px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+    }
+    .submit-btn:hover { background: #222; }
+
+    @media (max-width: 1024px) {
+      .stat-grid { grid-template-columns: repeat(2,1fr); }
+      .content-grid { grid-template-columns: 1fr; }
+      .admin-actions { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      .sidebar {
+        left: -240px;
+        z-index: 1000;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+      }
+      body.sidebar-open .sidebar {
+        transform: translateX(240px);
+      }
+      .sidebar-backdrop {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+        z-index: 999; display: none; opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      body.sidebar-open .sidebar-backdrop {
+        display: block; opacity: 1;
+      }
+      .main { margin-left: 0; padding: 1.25rem; width: 100%; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .mobile-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background: #000;
+        padding: 0 1.25rem;
+        height: 56px;
+        position: sticky;
+        top: 0;
+        z-index: 990;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .mobile-menu-toggle {
+        background: none; border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      }
+      .sidebar-close-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+      .form-row { grid-template-columns: 1fr !important; }
+      .admin-actions { grid-template-columns: 1fr !important; }
+      
+      /* Force inline grid templates to stack vertically on mobile */
+      div[style*="display:grid"],
+      div[style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+
+      /* Stack inline flex rows inside cards on mobile (e.g. diagnostics buttons) */
+      .diag-actions {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+      }
+      .diag-actions button {
+        width: 100% !important;
+        text-align: center !important;
+      }
+      
+      /* Scale SVGs on small screens */
+      svg {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+    }
+
+    /* Responsive tables */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 1rem;
+    }
+    
+    .mobile-header { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE HEADER -->
+  <header class="mobile-header">
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()" aria-label="Toggle Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <div class="mobile-logo">
+      <img src="stackly logo.webp" alt="Stackly" style="height: 24px; filter: invert(1);">
+    </div>
+    <div style="width: 22px;"></div>
+  </header>
+
+  <div class="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+      <img src="stackly logo.webp" alt="Stackly" style="filter: invert(1); opacity: 0.9; height:32px;">
+      <button class="sidebar-close-btn" onclick="toggleSidebar()" style="display:none; background:none; border:none; color:rgba(255,255,255,0.4); cursor:pointer; padding:0.25rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="admin-badge"><span></span> Admin Mode</div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-title">Overview</div>
+      <button class="nav-item active" id="btn-nav-dashboard" onclick="showSection('dashboard', this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <div class="sidebar-section-title">Management</div>
+      <button class="nav-item" id="btn-nav-users" onclick="showSection('users', this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Users
+        <span class="badge-count" id="users-badge">0</span>
+      </button>
+      <button class="nav-item" id="btn-nav-systems" onclick="showSection('systems', this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        Systems
+      </button>
+      <button class="nav-item" id="btn-nav-alerts" onclick="showSection('alerts', this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Alerts
+        <span class="badge-count" id="alerts-badge">3</span>
+      </button>
+
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-pill">
+        <div class="user-avatar" id="user-avatar">A</div>
+        <div class="user-info">
+          <div class="name" id="user-name">Admin</div>
+          <div class="role">Administrator</div>
+        </div>
+        <button class="logout-btn" onclick="logout()" title="Logout">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- ══════════════ 1. DASHBOARD ══════════════ -->
+    <div id="section-dashboard" class="page-section active">
+      <div class="page-header">
+        <div>
+          <h1>Admin Dashboard</h1>
+          <p id="welcome-msg">Full system control and monitoring.</p>
+        </div>
+        <div class="header-actions">
+          <div class="header-badge-red"><span></span> Admin Mode Active</div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Registered</div>
+          <div class="stat-value" id="dash-total-registered">0</div>
+          <div class="stat-change">Active in local storage</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Drones</div>
+          <div class="stat-value" id="dash-active-drones">37</div>
+          <div class="stat-change">↑ 2 deployed today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">System Alerts</div>
+          <div class="stat-value" id="dash-alerts-count">3</div>
+          <div class="stat-change down">↑ 1 critical</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Uptime</div>
+          <div class="stat-value">99.8%</div>
+          <div class="stat-change neutral">30-day avg</div>
+        </div>
+      </div>
+
+      <!-- ROW 1 -->
+      <div class="content-grid">
+        <!-- Quick Users Preview -->
+        <div class="card">
+          <div class="card-title">Registered Users Summary <span onclick="showSection('users', document.getElementById('btn-nav-users'))" style="cursor:pointer; text-decoration:underline;">Manage all</span></div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody id="users-preview-body">
+                <!-- Dynamically loaded preview -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- System Health -->
+        <div class="card">
+          <div class="card-title">System Health</div>
+          <div class="health-list">
+            <div class="health-item">
+              <div class="health-header"><span>API Gateway</span><span style="color:#22c55e; font-size:0.78rem;">99.9%</span></div>
+              <div class="health-bar"><div class="health-fill green" style="width:99.9%"></div></div>
+            </div>
+            <div class="health-item">
+              <div class="health-header"><span>Drone Telemetry</span><span style="color:#3b82f6; font-size:0.78rem;">97.2%</span></div>
+              <div class="health-bar"><div class="health-fill blue" style="width:97.2%"></div></div>
+            </div>
+            <div class="health-item">
+              <div class="health-header"><span>Sensor Network</span><span style="color:#f59e0b; font-size:0.78rem;">82.4%</span></div>
+              <div class="health-bar"><div class="health-fill amber" style="width:82.4%"></div></div>
+            </div>
+            <div class="health-item">
+              <div class="health-header"><span>AI Processing</span><span style="color:#ef4444; font-size:0.78rem;">61.3%</span></div>
+              <div class="health-bar"><div class="health-fill red" style="width:61.3%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Actions -->
+      <div class="card">
+        <div class="card-title">Admin Operations</div>
+        <div class="admin-actions">
+          <a class="action-btn" href="solutions.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg>
+            &nbsp;Manage Solutions
+          </a>
+          <a class="action-btn" href="industries.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            &nbsp;View Industries
+          </a>
+          <a class="action-btn" href="contact.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+            &nbsp;Manage Contact
+          </a>
+          <button class="action-btn danger" onclick="clearData()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+            &nbsp;Clear All Local Storage
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ 2. USERS MANAGEMENT ══════════════ -->
+    <div id="section-users" class="page-section">
+      <div class="page-header">
+        <div>
+          <h1>Users Management</h1>
+          <p>Control client access, adjust authorization roles, or provision test accounts.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Register / Provision New User Account</div>
+        <form id="admin-add-user-form" onsubmit="adminCreateUser(event)">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name</label><input type="text" id="add-user-name" placeholder="E.g., John Smith" required></div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="add-user-email" placeholder="john.smith@gmail.com" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Password</label><input type="password" id="add-user-pass" placeholder="At least 6 characters" required></div>
+            <div class="form-group"><label>Authorization Role</label>
+              <select id="add-user-role">
+                <option value="user">User Dashboard Access</option>
+                <option value="admin">Administrator (Full Control)</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">Provision Account</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-title">User Accounts Control Matrix</div>
+        <div class="table-responsive">
+          <table style="width: 100%;">
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th>Email Address</th>
+                <th>System Role</th>
+                <th style="text-align: right;">Operations</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-matrix">
+              <!-- Dynamically populated users matrix -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ 3. SYSTEMS CONFIGURATION ══════════════ -->
+    <div id="section-systems" class="page-section">
+      <div class="page-header">
+        <div>
+          <h1>Systems Configuration</h1>
+          <p>Toggle autonomous platforms, monitor telemetry gateways, and launch live diagnostics.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Autonomous Hardware Fleets</div>
+        <div class="table-responsive">
+          <table style="width: 100%;">
+            <thead>
+              <tr>
+                <th>Platform / Platform Name</th>
+                <th>Access Level</th>
+                <th>Global Hub</th>
+                <th>Telemetry Node</th>
+                <th>Dynamic Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AV-4 Vindicator VTOL</strong></td>
+                <td>Commercial/Govt</td>
+                <td>Salem Outpost</td>
+                <td>Node VTOL-7</td>
+                <td><span class="status-pill active">Deployed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Micro Scout Drone</strong></td>
+                <td>Standard</td>
+                <td>Tokyo Cell</td>
+                <td>Node Scout-3</td>
+                <td><span class="status-pill active">Deployed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Sentry UGV</strong></td>
+                <td>Restricted</td>
+                <td>Austin HQ</td>
+                <td>Node UGV-01</td>
+                <td><span class="status-pill pending">Pending Request</span></td>
+              </tr>
+              <tr>
+                <td><strong>Logistics UGV</strong></td>
+                <td>Restricted</td>
+                <td>Munich Lab</td>
+                <td>Node UGV-02</td>
+                <td><span class="status-pill inactive">Offline</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Command Diagnostic Logger -->
+      <div class="card">
+        <div class="card-title">Simulate Server Diagnostics</div>
+        <div class="diag-actions" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+          <button class="table-action-btn" onclick="runServerDiag('API Gateway')">Test API Gateway</button>
+          <button class="table-action-btn" onclick="runServerDiag('Drone Telemetry Server')">Test Telemetry link</button>
+          <button class="table-action-btn" onclick="runServerDiag('Salem Outpost Comms')">Test Salem Outpost</button>
+        </div>
+        <div id="admin-diag-output" style="background:#000; color:#39FF14; font-family:'IBM Plex Sans', monospace; font-size:0.82rem; padding:1.2rem; border-radius:9px; height:180px; overflow-y:auto; line-height:1.6; display:none;">
+          Initializing admin diagnostic telemetry...
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ 4. ALERTS MANAGEMENT ══════════════ -->
+    <div id="section-alerts" class="page-section">
+      <div class="page-header">
+        <div>
+          <h1>Alerts Management</h1>
+          <p>Review real-time security warnings, hardware malfunctions, or diagnostic telemetry exceptions.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Real-Time Threat & System Alerts <span onclick="clearAlerts()" style="cursor:pointer; text-decoration:underline; font-size:0.75rem; color:#ef4444;">Clear All Alerts</span></div>
+        <div class="table-responsive">
+          <table style="width:100%;">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Platform Source</th>
+                <th>Alert Message</th>
+                <th>Critical Level</th>
+              </tr>
+            </thead>
+            <tbody id="alerts-table-body">
+              <tr>
+                <td style="color:#aaa;">Jul 21, 15:44</td>
+                <td><strong>VTOL-7 Vindicator</strong></td>
+                <td>GPS coordinate deviation detected in Salem, TN flight sweep.</td>
+                <td><span class="status-pill active" style="background:#fef2f2; color:#ef4444;">CRITICAL</span></td>
+              </tr>
+              <tr>
+                <td style="color:#aaa;">Jul 21, 10:12</td>
+                <td><strong>API Gateway</strong></td>
+                <td>High latency spike (> 500ms) on European proxy nodes.</td>
+                <td><span class="status-pill pending">WARNING</span></td>
+              </tr>
+              <tr>
+                <td style="color:#aaa;">Jul 20, 09:18</td>
+                <td><strong>Sensor Array #3</strong></td>
+                <td>Laser rangefinder telemetry reporting signal obstruction.</td>
+                <td><span class="status-pill pending">WARNING</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // ── AUTH GUARD & SETUP ──
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!isLoggedIn()) { window.location.href = 'login.html'; return; }
+      const session = getSession();
+      const initials = session.name ? session.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) : 'A';
+      document.getElementById('user-avatar').textContent = initials;
+      document.getElementById('user-name').textContent   = session.name || 'Admin';
+      document.getElementById('welcome-msg').textContent = 'Welcome, ' + (session.name || 'Admin') + '. Full system control active.';
+
+      // Synchronize dashboard matrices
+      refreshDashboardData();
+    });
+
+    // ── SECTION SWITCHER ──
+    function showSection(id, clickedBtn) {
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      
+      const targetSec = document.getElementById('section-' + id);
+      if (targetSec) targetSec.classList.add('active');
+      
+      if (clickedBtn) clickedBtn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Close sidebar drawer on mobile
+      document.body.classList.remove('sidebar-open');
+    }
+
+    function toggleSidebar() {
+      document.body.classList.toggle('sidebar-open');
+    }
+
+    // ── DATA RENDERING MATRIX ──
+    function refreshDashboardData() {
+      const users = JSON.parse(localStorage.getItem('stackly_users') || '[]');
+      
+      // Update badge count
+      document.getElementById('users-badge').textContent = users.length;
+      document.getElementById('dash-total-registered').textContent = users.length;
+
+      // Render Overview Preview
+      const previewTbody = document.getElementById('users-preview-body');
+      if (users.length > 0) {
+        // limit preview to top 5
+        previewTbody.innerHTML = users.slice(0, 5).map(u => `
+          <tr>
+            <td><strong>${u.name}</strong></td>
+            <td style="color:#666">${u.email}</td>
+            <td><span class="status-pill ${u.role === 'admin' ? 'admin' : 'pending'}">${u.role || 'user'}</span></td>
+          </tr>
+        `).join('');
+      } else {
+        previewTbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#bbb; padding:1.5rem 0;">No accounts found.</td></tr>`;
+      }
+
+      // Render Manage Users Matrix
+      const matrixTbody = document.getElementById('admin-users-matrix');
+      if (users.length > 0) {
+        matrixTbody.innerHTML = users.map((u, index) => `
+          <tr>
+            <td><strong>${u.name}</strong></td>
+            <td style="color:#666">${u.email}</td>
+            <td>
+              <select style="padding:0.25rem 0.5rem; font-size:0.8rem; border-radius:5px;" onchange="updateUserRole('${u.email}', this.value)">
+                <option value="user" ${u.role === 'user' ? 'selected' : ''}>User Dashboard</option>
+                <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Admin Dashboard</option>
+              </select>
+            </td>
+            <td style="text-align: right;">
+              <button class="table-action-btn danger" onclick="deleteUser('${u.email}')">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+      } else {
+        matrixTbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#bbb; padding:2rem 0;">No registered users.</td></tr>`;
+      }
+    }
+
+    // ── PROVISION NEW ACCOUNT ──
+    function adminCreateUser(e) {
+      e.preventDefault();
+      const name = document.getElementById('add-user-name').value.trim();
+      const email = document.getElementById('add-user-email').value.trim();
+      const pass = document.getElementById('add-user-pass').value;
+      const role = document.getElementById('add-user-role').value;
+
+      if (!name || !email || !pass) return;
+
+      const users = JSON.parse(localStorage.getItem('stackly_users') || '[]');
+      if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        alert('An account with this email address already exists.');
+        return;
+      }
+
+      users.push({ name, email, password: pass, role });
+      localStorage.setItem('stackly_users', JSON.stringify(users));
+
+      // Reset
+      document.getElementById('admin-add-user-form').reset();
+      alert(`Account for ${name} (${role.toUpperCase()}) has been provisioned.`);
+      
+      refreshDashboardData();
+    }
+
+    // ── UPDATE ROLE ──
+    function updateUserRole(email, newRole) {
+      const users = JSON.parse(localStorage.getItem('stackly_users') || '[]');
+      const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+      if (user) {
+        user.role = newRole;
+        localStorage.setItem('stackly_users', JSON.stringify(users));
+        alert(`Access permission for ${user.name} changed to ${newRole.toUpperCase()}.`);
+        refreshDashboardData();
+      }
+    }
+
+    // ── DELETE ACCOUNT ──
+    function deleteUser(email) {
+      const confirmDel = confirm(`Are you sure you want to permanently delete the account linked to ${email}?`);
+      if (!confirmDel) return;
+
+      let users = JSON.parse(localStorage.getItem('stackly_users') || '[]');
+      users = users.filter(u => u.email.toLowerCase() !== email.toLowerCase());
+      localStorage.setItem('stackly_users', JSON.stringify(users));
+
+      alert('Account removed from secure ledger.');
+      refreshDashboardData();
+    }
+
+    // ── ALERTS OPERATIONS ──
+    function clearAlerts() {
+      const tbody = document.getElementById('alerts-table-body');
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#22c55e; font-weight:700; padding:2rem 0;">✓ All system alerts resolved and cleared. System status: nominal.</td></tr>`;
+      
+      document.getElementById('alerts-badge').style.display = 'none';
+      document.getElementById('dash-alerts-count').textContent = '0';
+    }
+
+    // ── DIAGNOSTICS LOGGER ──
+    let diagTimeout;
+    function runServerDiag(serverName) {
+      const logEl = document.getElementById('admin-diag-output');
+      logEl.style.display = 'block';
+      logEl.scrollIntoView({ behavior: 'smooth' });
+      logEl.innerHTML = `[INFO] Initializing handshake with server node: ${serverName}...`;
+
+      let step = 0;
+      const logs = [
+        `[OK] Secure sockets connection: SUCCESS.`,
+        `[OK] Integrity of cryptographic database chains: VALID.`,
+        `[OK] Local storage ledger check completed: OK.`,
+        `[OK] Memory load and CPU throttle limits: Nominal.`,
+        `[SUCCESS] Ping roundtrip completed. Diagnostic run for ${serverName} finished successfully.`
+      ];
+
+      clearInterval(diagTimeout);
+      diagTimeout = setInterval(() => {
+        if (step < logs.length) {
+          logEl.innerHTML += `<br>${logs[step]}`;
+          logEl.scrollTop = logEl.scrollHeight;
+          step++;
+        } else {
+          clearInterval(diagTimeout);
+        }
+      }, 500);
+    }
+
+    // ── OPERATIONS ──
+    function clearData() {
+      if (confirm('Warning: This will clear all registered accounts and ticket logs. Proceed?')) {
+        localStorage.clear();
+        window.location.href = 'login.html';
+      }
+    }
+  </script>
+</body>
+</html>

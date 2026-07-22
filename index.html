@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly — Next-Gen Autonomous Systems & Defence Infrastructure</title>
+  <meta name="description" content="Next-generation autonomous drones, AI surveillance, aerospace engineering, ISR systems, and command software. Engineering tomorrow's defence.">
+  <link rel="stylesheet" href="css/global.css">
+  <!-- Lucide Icons CDN for Thin Line Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-grid">
+      <div class="radar-sweep"></div>
+      <div class="preloader-logo"><img src="stackly logo.webp" alt="Stackly" style="height: 48px; width: auto; object-fit: contain;"></div>
+    </div>
+    <div class="preloader-status">Mission Initializing...</div>
+    <div class="preloader-progress">0%</div>
+    <div class="preloader-log">Booting Avionics Core...</div>
+  </div>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div class="page-transition-overlay"></div>
+
+  <!-- BATTLE DRONES SCROLL OVERLAY (Active after Hero section) -->
+  <div id="home-battle-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 0.5s ease;"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo hover-target">
+      <img src="stackly logo.webp" alt="Stackly" style="height: 40px; width: auto; object-fit: contain;">
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active hover-target">Home</a>
+      <a href="solutions.html" class="nav-link hover-target">Solutions</a>
+      <a href="industries.html" class="nav-link hover-target">Industries</a>
+      <a href="about.html" class="nav-link hover-target">About</a>
+      <a href="contact.html" class="nav-link hover-target">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-primary hover-target" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Login</a>
+      <a href="signup.html" class="btn btn-secondary hover-target" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN PAGE WRAPPER ==================== -->
+  <main id="main-content">
+
+    <!-- 1. IMMERSIVE HERO SECTION -->
+    <section class="section" id="hero-section" style="padding-top: 120px;">
+      <div class="blueprint-grid"></div>
+      <!-- 3D Drone Canvas Container -->
+      <div id="drone-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></div>
+
+      <div class="container" style="z-index: 3; position: relative; pointer-events: auto;">
+        <div class="section-label hero-animate">STACKLY LABS</div>
+        <h1 class="hero-animate text-reveal" style="max-width: 900px; margin-bottom: 2rem;">
+          Engineering<br>Tomorrow's<br>Defence Systems
+        </h1>
+        <p class="hero-animate" style="max-width: 550px; margin-bottom: 3rem; font-size: 1.2rem;">
+          Advanced autonomous solutions for military operations, surveillance, border protection, and aerospace innovation.
+        </p>
+        
+        <div class="hero-animate" style="display: flex; gap: 1.5rem; margin-bottom: 5rem;">
+          <a href="404.html" class="btn btn-primary hover-target">Explore Systems</a>
+          <a href="404.html" class="btn btn-secondary hover-target">Schedule Demo</a>
+        </div>
+
+        <!-- Float stats -->
+        <div class="hero-animate" style="display: grid; grid-template-columns: repeat(4, minmax(100px, 200px)); gap: 4rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+          <div>
+            <div class="counter-val" data-target="120" style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700;">0</div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); letter-spacing: 0.1em; margin-top: 0.5rem;">Deployed Projects</div>
+          </div>
+          <div>
+            <div class="counter-val" data-target="40" style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700;">0</div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); letter-spacing: 0.1em; margin-top: 0.5rem;">Partner Countries</div>
+          </div>
+          <div>
+            <div class="counter-val" data-target="99" data-float="true" style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700;">0%</div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); letter-spacing: 0.1em; margin-top: 0.5rem;">Mission Success</div>
+          </div>
+          <div>
+            <div class="counter-val" data-target="24" data-suffix="/7" style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700;">0</div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); letter-spacing: 0.1em; margin-top: 0.5rem;">Operations Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. OUR CAPABILITIES SECTION -->
+    <section class="section" id="capabilities-section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Core Matrix</div>
+          <h2>Our Capabilities</h2>
+          <p style="margin-top: 1rem;">Modular technology engineered for tactical superiority, border security, and high-altitude operations.</p>
+        </div>
+
+        <div class="editorial-grid">
+          <!-- Card 1 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">01 // TACTICAL</span>
+            <i data-lucide="shield" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>Drone Systems</h3>
+            <p>Hybrid VTOL & fixed-wing platforms carrying multi-spectral payloads with satellite fallback operations.</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">02 // SENSOR INFRASTRUCTURE</span>
+            <i data-lucide="eye" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>AI Surveillance</h3>
+            <p>Edge-compute vision networks recognizing tactical units and targets in real time under zero illumination.</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">03 // PERIMETER SECURE</span>
+            <i data-lucide="radar" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>Border Security</h3>
+            <p>Seismic arrays, virtual gates, and automated interceptor launch systems for smart sovereign protection.</p>
+          </div>
+          <!-- Card 4 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">04 // HEAVY LOGISTICS</span>
+            <i data-lucide="cpu" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>Military Robotics</h3>
+            <p>Unmanned ground units (UGVs) equipped for combat cargo, demining operations, and tactical reconnaissance.</p>
+          </div>
+          <!-- Card 5 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">05 // SPACE & GEOSPATIAL</span>
+            <i data-lucide="globe" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>Satellite Intelligence</h3>
+            <p>Low-Earth orbit imagery collection, synthetic aperture radar (SAR), and AI predictive analytics overlays.</p>
+          </div>
+          <!-- Card 6 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">06 // COMMAND PLATFORM</span>
+            <i data-lucide="activity" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>ISR Platforms</h3>
+            <p>Integrated intelligence systems bridging space, air, land, and sea operations into one unified command view.</p>
+          </div>
+          <!-- Card 7 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">07 // MULTI-SPECTRAL</span>
+            <i data-lucide="aperture" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>Integrated Sensors</h3>
+            <p>Multi-frequency optical lenses, micro-radar plates, and thermal matrix sensors deployed on active outposts.</p>
+          </div>
+          <!-- Card 8 -->
+          <div class="editorial-card fade-up hover-target" style="grid-column: span 3;">
+            <span class="card-index">08 // CYBER SECURE</span>
+            <i data-lucide="terminal" style="stroke-width: 1; width: 40px; height: 40px; margin-bottom: 1.5rem;"></i>
+            <h3>Command Software</h3>
+            <p>Sovereign operating systems written in Rust with Zero-Trust satlink keys and encrypted swarm networks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FEATURED PLATFORM SECTION -->
+    <section class="section" id="featured-platform-section" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 5;">
+            <div class="section-label">Featured Hardware</div>
+            <h2>AV-4 Vindicator</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              Our flagship long-endurance hybrid-propulsion VTOL aircraft. Engineered to execute intelligence sweeps, multi-payload logistics, and tactical interception in highly contested environments.
+            </p>
+
+            <!-- Specs Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+              <div>
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); display: block;">MAX PAYLOAD</span>
+                <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600;">85 KG</span>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); display: block;">FLIGHT ENDURANCE</span>
+                <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600;">14 HOURS</span>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); display: block;">PROPULSION TYPE</span>
+                <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600;">HYBRID VTOL</span>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-sec); display: block;">NAVIGATION</span>
+                <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600;">AI EDGE - LOCAL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Image Show -->
+          <div class="fade-up" style="grid-column: span 7; position: relative;">
+            <div style="border: 1px solid var(--border); background: var(--bg); border-radius: 12px; padding: 2rem; overflow: hidden;">
+              <img src="assets/drone_hero.webp" alt="AV-4 Vindicator technical layout" style="width: 100%; height: auto; display: block; border-radius: 8px; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+              <!-- Telemetry indicators overlay -->
+              <div style="position: absolute; bottom: 4rem; right: 4rem; background: rgba(255,255,255,0.9); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; line-height: 1.4;">
+                <span style="color: #000; font-weight: 700;">SYSTEMSTATUS: COMMITTED</span><br>
+                <span>VECTOR LOCK: Lat 48.135 | Lon 11.582</span><br>
+                <span>THERMAL COMP: STEADY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TECHNOLOGY ECOSYSTEM SECTION -->
+    <section class="section" id="technology-ecosystem-section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Digital Framework</div>
+          <h2>Technology Ecosystem</h2>
+          <p style="margin-top: 1rem;">A unified artificial intelligence layer powering autonomy and communications across every domain.</p>
+        </div>
+
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 6;">
+            <!-- Interactive Hex Network Canvas -->
+            <canvas id="tech-ecosystem-canvas"></canvas>
+          </div>
+          <div class="fade-up" style="grid-column: span 6; padding-left: 2rem;">
+            <div style="margin-bottom: 2.5rem;">
+              <h3 style="text-transform: uppercase; font-size: 1.5rem; margin-bottom: 0.5rem;">Autonomous Edge AI</h3>
+              <p>Edge computers operating on localized neural networks make complex flight decisions, path routing, and hazard avoidance without needing constant ground control satlink connection.</p>
+            </div>
+            <div style="margin-bottom: 2.5rem;">
+              <h3 style="text-transform: uppercase; font-size: 1.5rem; margin-bottom: 0.5rem;">Zero-Trust Encryption</h3>
+              <p>Post-quantum cryptographic algorithms seal communications channels between mobile systems, command rooms, and ground payloads, maintaining system integrity under active spoofing.</p>
+            </div>
+            <div>
+              <h3 style="text-transform: uppercase; font-size: 1.5rem; margin-bottom: 0.5rem;">Dynamic Swarming Protocol</h3>
+              <p>Self-healing swarm networks coordinate payload positioning dynamically to guarantee signal range extension and wide-area radar scanning without operational gaps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MISSION PROCESS SECTION (HORIZONTAL STORYTELLING) -->
+    <section id="process-section" style="overflow: hidden; background: var(--bg); border-bottom: 1px solid var(--border);">
+      <div class="horizontal-timeline">
+        <!-- Step 1 -->
+        <div class="timeline-step">
+          <span class="timeline-number">01</span>
+          <div class="timeline-body">
+            <div class="section-label">Process Flow</div>
+            <h3 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Operational Research</h3>
+            <p>We start by analyzing contested environments and emerging threats to target exact system capabilities, sensor specs, and weight allocations.</p>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="timeline-step">
+          <span class="timeline-number">02</span>
+          <div class="timeline-body">
+            <div class="section-label">Process Flow</div>
+            <h3 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Engineering</h3>
+            <p>Our aerospace engineers construct modular hardware layers, VTOL wing panels, and composite materials at our cleanroom labs.</p>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="timeline-step">
+          <span class="timeline-number">03</span>
+          <div class="timeline-body">
+            <div class="section-label">Process Flow</div>
+            <h3 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Virtual Simulation</h3>
+            <p>Using digital twins, systems are subjected to synthetic electronic warfare, extreme weather variables, and swarm collision scenarios.</p>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="timeline-step">
+          <span class="timeline-number">04</span>
+          <div class="timeline-body">
+            <div class="section-label">Process Flow</div>
+            <h3 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Real-World Testing</h3>
+            <p>Sovereign firing and testing ranges run live operations evaluating sensor feeds, telemetry robustness, and drone intercept speeds.</p>
+          </div>
+        </div>
+        <!-- Step 5 -->
+        <div class="timeline-step">
+          <span class="timeline-number">05</span>
+          <div class="timeline-body">
+            <div class="section-label">Process Flow</div>
+            <h3 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Deployment</h3>
+            <p>Tactical deployment to airbases, border outpost rails, and naval carriers. Training is reinforced with simulator models.</p>
+          </div>
+        </div>
+        <!-- Step 6 -->
+        <div class="timeline-step">
+          <span class="timeline-number">06</span>
+          <div class="timeline-body">
+            <div class="section-label">Process Flow</div>
+            <h3 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Tactical Support</h3>
+            <p>24/7 technical logistics support channels. Secure over-the-air firmware updates are supplied with updated telemetry models.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. INDUSTRIES SECTION -->
+    <section class="section" id="industries-section" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Sectors</div>
+          <h2>Industries We Serve</h2>
+          <p style="margin-top: 1rem;">We supply critical autonomous infrastructure to defense forces, emergency units, and critical utilities.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+          <!-- Card 1 -->
+          <div class="editorial-card fade-up hover-target" style="padding: 0; overflow: hidden; border-radius: 12px;">
+            <div style="height: 250px; overflow: hidden; background: #EAEAEA; position: relative;">
+              <img src="assets/military_ind.webp" alt="Military operations drone and troops" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+              <div style="position: absolute; top: 2rem; left: 2rem; color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">MILITARY</div>
+            </div>
+            <div style="padding: 2rem;">
+              <p>Supplying state-of-the-art ISR VTOL platforms, tactical robotics, and secure command dashboards directly to combat fleets.</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="editorial-card fade-up hover-target" style="padding: 0; overflow: hidden; border-radius: 12px;">
+            <div style="height: 250px; overflow: hidden; background: #EAEAEA; position: relative;">
+              <img src="assets/border_ind.webp" alt="Border protection thermal radar" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+              <div style="position: absolute; top: 2rem; left: 2rem; color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">BORDER PROTECTION</div>
+            </div>
+            <div style="padding: 2rem;">
+              <p>Persistent radar outposts, high-spec thermal cameras, and perimeter smart nodes sealing borders against incursions.</p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="editorial-card fade-up hover-target" style="padding: 0; overflow: hidden; border-radius: 12px;">
+            <div style="height: 250px; overflow: hidden; background: #EAEAEA; position: relative;">
+              <img src="assets/energy_ind.webp" alt="Energy utility smart grid infrastructure" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+              <div style="position: absolute; top: 2rem; left: 2rem; color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">ENERGY UTILITIES</div>
+            </div>
+            <div style="padding: 2rem;">
+              <p>Autonomous monitoring drones inspecting oil pipelines, nuclear domes, and remote power networks daily.</p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="editorial-card fade-up hover-target" style="padding: 0; overflow: hidden; border-radius: 12px; margin-top: 1rem;">
+            <div style="height: 250px; overflow: hidden; background: #EAEAEA; position: relative;">
+              <img src="assets/maritime_ind.webp" alt="Maritime battleship patrol" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+              <div style="position: absolute; top: 2rem; left: 2rem; color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">MARITIME</div>
+            </div>
+            <div style="padding: 2rem;">
+              <p>Unmanned surface craft, subsea sensor monitoring grids, and high-altitude coastal VTOL scanning.</p>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div class="editorial-card fade-up hover-target" style="padding: 0; overflow: hidden; border-radius: 12px; margin-top: 1rem;">
+            <div style="height: 250px; overflow: hidden; background: #EAEAEA; position: relative;">
+              <img src="assets/mining_ind.webp" alt="Autonomous mining heavy machinery" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+              <div style="position: absolute; top: 2rem; left: 2rem; color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">MINING OPERATIONS</div>
+            </div>
+            <div style="padding: 2rem;">
+              <p>Mapping, hazard scanning, volume inspection, and logistics drone deployment over harsh extraction fields.</p>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div class="editorial-card fade-up hover-target" style="padding: 0; overflow: hidden; border-radius: 12px; margin-top: 1rem;">
+            <div style="height: 250px; overflow: hidden; background: #EAEAEA; position: relative;">
+              <img src="assets/emergency_ind.webp" alt="Emergency responder rescue helicopter" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+              <div style="position: absolute; top: 2rem; left: 2rem; color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">EMERGENCY RESPONSE</div>
+            </div>
+            <div style="padding: 2rem;">
+              <p>Thermal mapping search and rescue fleets, heavy cargo supply drop drones, and hazard analysis units.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. COMMAND CENTER SECTION -->
+    <section class="section" id="command-center-section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Tactical Console</div>
+          <h2>Command Center Dashboard</h2>
+          <p style="margin-top: 1rem;">A mockup of our proprietary remote command software. Tap to toggle telemetry systems.</p>
+        </div>
+
+        <div class="editorial-grid" style="align-items: stretch;">
+          <!-- Telemetry Left Panel -->
+          <div class="fade-up" style="grid-column: span 4; display: flex; flex-direction: column; gap: 1.5rem;">
+            <div class="telemetry-widget">
+              <span class="widget-label">ACTIVE PLATFORMS</span>
+              <span class="widget-value">48 ACTIVE</span>
+            </div>
+            <div class="telemetry-widget">
+              <span class="widget-label">CURRENT ALTITUDE</span>
+              <span class="widget-value" id="live-altitude">120.4M</span>
+            </div>
+            <div class="telemetry-widget">
+              <span class="widget-label">BATTERY RESERVE</span>
+              <span class="widget-value" id="live-battery" style="color: #050505;">87.6%</span>
+            </div>
+            <div class="telemetry-widget">
+              <span class="widget-label">WIND RESISTANCE</span>
+              <span class="widget-value" id="live-wind">13.2 KTS</span>
+            </div>
+          </div>
+
+          <!-- Radar Visual Center -->
+          <div class="fade-up" style="grid-column: span 5; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 12px; padding: 2rem; background: var(--card-bg);">
+            <canvas id="telemetry-radar-canvas"></canvas>
+          </div>
+
+          <!-- System Log Right Panel -->
+          <div class="fade-up" style="grid-column: span 3; border: 1px solid var(--border); border-radius: 12px; padding: 2rem; background: var(--bg-sec); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.65rem; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.1em;">⬤ LIVE SECURITY BRIEF</span>
+              <div id="live-security-log" style="font-family: 'IBM Plex Sans', monospace; font-size: 0.72rem; margin-top: 1.2rem; line-height: 1.9; overflow: hidden; max-height: 160px;">
+                <div style="opacity:0.6;">[STATUS] SYSTEM BOOT COMPLETE. AWAITING DATA...</div>
+              </div>
+            </div>
+            
+            <a href="404.html" class="btn btn-primary hover-target" style="width: 100%; margin-top: 2rem;">Explore Software</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. GLOBAL OPERATIONS SECTION -->
+    <section class="section" id="global-operations-section" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Operations</div>
+          <h2>Global Presence</h2>
+          <p style="margin-top: 1rem;">Tracking our real-time manufacturing sites, simulation centers, and flight verification outposts.</p>
+        </div>
+
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 8;">
+            <!-- Custom Vector SVG Map of Global operations -->
+            <svg id="global-ops-map" viewBox="0 0 1000 500" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--bg);">
+              <!-- Simplified Outline Map Path -->
+              <rect width="100%" height="100%" fill="#ffffff" />
+              <!-- Grids -->
+              <g stroke="#eaeaea" stroke-width="0.5">
+                <line x1="0" y1="100" x2="1000" y2="100" />
+                <line x1="0" y1="200" x2="1000" y2="200" />
+                <line x1="0" y1="300" x2="1000" y2="300" />
+                <line x1="0" y1="400" x2="1000" y2="400" />
+                <line x1="200" y1="0" x2="200" y2="500" />
+                <line x1="400" y1="0" x2="400" y2="500" />
+                <line x1="600" y1="0" x2="600" y2="500" />
+                <line x1="800" y1="0" x2="800" y2="500" />
+              </g>
+              
+              <!-- Route arcs -->
+              <path class="map-path" d="M 250 200 Q 425 100 600 150" fill="none" stroke="#666666" stroke-width="1.5" stroke-dasharray="6,6" />
+              <path class="map-path" d="M 600 150 Q 725 180 850 250" fill="none" stroke="#666666" stroke-width="1.5" stroke-dasharray="6,6" />
+
+              <!-- Location markers -->
+              <!-- Austin Research Hub -->
+              <circle class="map-marker" cx="250" cy="200" r="6" fill="#000000" />
+              <circle class="map-marker" cx="250" cy="200" r="14" fill="none" stroke="#000000" stroke-width="1" style="opacity: 0.4;" />
+              <text x="250" y="180" font-family="'Space Grotesk'" font-size="10" font-weight="bold" fill="#050505" text-anchor="middle">AUSTIN HQ</text>
+
+              <!-- Munich Production Hub -->
+              <circle class="map-marker" cx="600" cy="150" r="6" fill="#000000" />
+              <circle class="map-marker" cx="600" cy="150" r="14" fill="none" stroke="#000000" stroke-width="1" style="opacity: 0.4;" />
+              <text x="600" y="130" font-family="'Space Grotesk'" font-size="10" font-weight="bold" fill="#050505" text-anchor="middle">MUNICH LABS</text>
+
+              <!-- Tokyo Test Hub -->
+              <circle class="map-marker" cx="850" cy="250" r="6" fill="#000000" />
+              <circle class="map-marker" cx="850" cy="250" r="14" fill="none" stroke="#000000" stroke-width="1" style="opacity: 0.4;" />
+              <text x="850" y="230" font-family="'Space Grotesk'" font-size="10" font-weight="bold" fill="#050505" text-anchor="middle">TOKYO OUTPOST</text>
+            </svg>
+          </div>
+          <div class="fade-up" style="grid-column: span 4; padding-left: 1.5rem;">
+            <div style="border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2rem;">
+              <h4 style="font-family: var(--font-heading); text-transform: uppercase;">01 // AUSTIN HQ</h4>
+              <p style="font-size: 0.9rem; margin-top: 0.5rem;">Core AI research division and tactical autonomous flight simulation labs.</p>
+            </div>
+            <div style="border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2rem;">
+              <h4 style="font-family: var(--font-heading); text-transform: uppercase;">02 // MUNICH LABS</h4>
+              <p style="font-size: 0.9rem; margin-top: 0.5rem;">VTOL manufacturing plant, aerospace engineering division, and wind tunnel calibration.</p>
+            </div>
+            <div style="border-left: 2px solid var(--accent); padding-left: 1.5rem;">
+              <h4 style="font-family: var(--font-heading); text-transform: uppercase;">03 // TOKYO TEST RANGE</h4>
+              <p style="font-size: 0.9rem; margin-top: 0.5rem;">Sensory integration systems, radar evaluation nodes, and regional naval monitoring.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. LATEST INSIGHTS SECTION -->
+    <section class="section" id="insights-section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Intel Report</div>
+          <h2>Latest Insights</h2>
+          <p style="margin-top: 1rem;">Research reports on modern aerospace, artificial intelligence systems, and security networks.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 3rem;">
+          <!-- Feature Article -->
+          <div class="editorial-card fade-up hover-target" style="padding: 0; overflow: hidden; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between; min-height: 480px;">
+            <div style="background: var(--border); height: 280px; overflow: hidden; position: relative;">
+              <img src="assets/command_center.webp" alt="AI Command center interface mockup" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.8s var(--ease-premium);" class="hover-zoom">
+            </div>
+            <div style="padding: 3rem;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); letter-spacing: 0.1rem; text-transform: uppercase;">AEROSPACE TECH // JULY 2026</span>
+              <h3 style="font-size: 1.8rem; text-transform: uppercase; margin-top: 1rem; margin-bottom: 1rem;">The Role of Edge-Compute AI in Countering Contested Satlink Environments</h3>
+              <p>How localized computer vision models enable autonomous VTOL platforms to execute complex flight paths even under massive satellite jam operations.</p>
+            </div>
+          </div>
+
+          <!-- Magazine List -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            <!-- Article 2 -->
+            <div class="fade-up hover-target" style="border-bottom: 1px solid var(--border); padding-bottom: 2rem; text-decoration: none; color: inherit; display: block;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); letter-spacing: 0.1rem; text-transform: uppercase;">SECURITY // JUNE 2026</span>
+              <h3 style="font-size: 1.25rem; text-transform: uppercase; margin-top: 0.5rem; margin-bottom: 0.5rem;">Securing Border Environs with Seismic & Thermal Array Combinations</h3>
+              <p style="font-size: 0.9rem;">Evaluating sensor fusion grids deployed along high-threat border territories.</p>
+            </div>
+            <!-- Article 3 -->
+            <div class="fade-up hover-target" style="border-bottom: 1px solid var(--border); padding-bottom: 2rem; text-decoration: none; color: inherit; display: block;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); letter-spacing: 0.1rem; text-transform: uppercase;">ROBOTICS // MAY 2026</span>
+              <h3 style="font-size: 1.25rem; text-transform: uppercase; margin-top: 0.5rem; margin-bottom: 0.5rem;">Tactical Logistics: Deploying Heavy Robotic UGVs in Complex Terrains</h3>
+              <p style="font-size: 0.9rem;">Operational metrics from field tests of modular infantry support robotics.</p>
+            </div>
+            <!-- Article 4 -->
+            <div class="fade-up hover-target" style="padding-bottom: 2rem; text-decoration: none; color: inherit; display: block;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); letter-spacing: 0.1rem; text-transform: uppercase;">QUANTUM SECURE // MAY 2026</span>
+              <h3 style="font-size: 1.25rem; text-transform: uppercase; margin-top: 0.5rem; margin-bottom: 0.5rem;">Post-Quantum Cryptography in Tactical Airborne Networks</h3>
+              <p style="font-size: 0.9rem;">Transitioning drone mesh protocols to quantum-resistant encryption structures.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FINAL CTA SECTION -->
+    <section class="section" id="final-cta-section" style="min-height: 80vh;">
+      <div class="blueprint-grid" style="opacity: 0.25;"></div>
+      <div class="container" style="text-align: center; z-index: 3; position: relative;">
+        <div class="section-label" style="justify-content: center; margin-bottom: 2rem;">Initiate Engagement</div>
+        <h2 style="font-size: clamp(2.5rem, 6vw, 6rem); text-transform: uppercase; line-height: 0.95; margin-bottom: 3rem;">
+          Ready For The<br>Next Mission?
+        </h2>
+        
+        <div style="display: flex; gap: 2rem; justify-content: center;">
+          <a href="404.html" class="btn btn-primary hover-target">Contact Team</a>
+          <a href="404.html" class="btn btn-secondary hover-target">Download Company Profile</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="stackly logo.webp" alt="Stackly" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 0.5rem; display: block;">
+        <p>Next-generation autonomous aerospace, intelligence grids, and perimeter defense software.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="Twitter / X">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Quick Links</h3>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="hover-target">Home</a></li>
+          <li><a href="solutions.html" class="hover-target">Solutions</a></li>
+          <li><a href="industries.html" class="hover-target">Industries</a></li>
+          <li><a href="about.html" class="hover-target">About</a></li>
+          <li><a href="contact.html" class="hover-target">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Sectors</h3>
+        <ul class="footer-links-list">
+          <li><a href="404.html" class="hover-target">Armed Forces</a></li>
+          <li><a href="404.html" class="hover-target">Border Outposts</a></li>
+          <li><a href="404.html" class="hover-target">Energy Infrastructure</a></li>
+          <li><a href="404.html" class="hover-target">Maritime Command</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Contact Us</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text); font-weight: 600;">+91 74880 99999</p>
+        <p style="font-size: 0.9rem; margin-bottom: 1rem;"><a href="404.html" class="hover-target" style="color: var(--text-sec); text-decoration: none;">info@stackly.com</a></p>
+        <p style="font-size: 0.85rem; color: var(--text-sec); line-height: 1.5; font-family: var(--font-body);">
+          MMR Complex, Salem - 636 003,<br>
+          Tamil Nadu, India
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+ 
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Stackly. All rights reserved. Sovereign defense manufacturing.</span>
+      <div style="display: flex; gap: 2rem;">
+        <a href="404.html" class="hover-target" style="text-decoration: none; font-size: 0.8rem; color: var(--text-sec);">R&D Lab</a>
+        <a href="404.html" class="hover-target" style="text-decoration: none; font-size: 0.8rem; color: var(--text-sec);">Terms of Clearance</a>
+      </div>
+    </div>
+
+    <!-- Massive Watermark Text -->
+    <div class="footer-watermark">VANGUARD</div>
+  </footer>
+
+  <!-- ==================== CORE LIBRARIES ==================== -->
+  <!-- GSAP Core & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lenis for Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+  <!-- ==================== APPLICATION SCRIPTS ==================== -->
+  <script src="js/drone3d.js"></script>
+  <script src="js/home_battle_drones.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Lucide Icons Initializer -->
+  <script>
+    lucide.createIcons();
+  </script>
+<script src=js/auth.js></script><script>document.addEventListener('DOMContentLoaded',function(){updateNavAuth();});</script></body>
+</html>

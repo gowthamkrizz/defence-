@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industries — Stackly Operating Domains</title>
+  <meta name="description" content="Stackly supplies autonomous security systems for defence, border protection, maritime security, critical infrastructures, and energy utilities.">
+  <link rel="stylesheet" href="css/global.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div class="page-transition-overlay"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo hover-target">
+      <img src="stackly logo.webp" alt="Stackly" style="height: 40px; width: auto; object-fit: contain;">
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link hover-target">Home</a>
+      <a href="solutions.html" class="nav-link hover-target">Solutions</a>
+      <a href="industries.html" class="nav-link active hover-target">Industries</a>
+      <a href="about.html" class="nav-link hover-target">About</a>
+      <a href="contact.html" class="nav-link hover-target">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-primary hover-target" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Login</a>
+      <a href="signup.html" class="btn btn-secondary hover-target" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN PAGE WRAPPER ==================== -->
+  <main id="main-content">
+
+    <!-- 1. HERO SECTION -->
+    <section class="section" id="industries-hero" style="padding-top: 150px; min-height: 85vh; position: relative; overflow: hidden;">
+      <div class="blueprint-grid" style="opacity: 0.25;"></div>
+      <!-- 3D Drones Container -->
+      <div id="industries-drone-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></div>
+      <div class="container" style="z-index: 3; position: relative;">
+        <div class="section-label">OPERATING SECTORS</div>
+        <h1 class="text-reveal" style="max-width: 900px; margin-bottom: 2rem;">Securing<br>Sovereign Assets</h1>
+        <p style="max-width: 600px; font-size: 1.2rem;">
+          Integrating robotics, remote command software, and long-range sensors to protect military bases, borders, shipping lanes, and critical energy infrastructure worldwide.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. DEFENCE SECTION -->
+    <section class="section" id="defence-industry" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 5;">
+            <div class="section-label">01 // MILITARY DOMAIN</div>
+            <h2>National Defence</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              We engineer military-grade VTOL drone swarms and heavy ground robotics to execute intelligence sweeps, airbase perimeter mapping, and naval support.
+            </p>
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); display: block; margin-bottom: 0.5rem;">COMPATIBLE HARDWARE</span>
+              <span style="font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">AV-4 Vindicator // Sentry Crawler</span>
+            </div>
+          </div>
+          
+          <div class="fade-up" style="grid-column: span 7;">
+            <img src="assets/military_ind.webp" alt="Military Defence Industry" style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HOMELAND SECURITY SECTION -->
+    <section class="section" id="homeland-security">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 7;">
+            <img src="assets/command_center.webp" alt="Homeland Security AI Grid" style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+          </div>
+
+          <div class="fade-up" style="grid-column: span 5; padding-left: 2rem;">
+            <div class="section-label">02 // FEDERAL SECURITY</div>
+            <h2>Homeland Security</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              Smart threat monitoring grids that integrate urban cameras, localized seismic nodes, and micro drones to protect administrative buildings, embassies, and event perimeters.
+            </p>
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); display: block; margin-bottom: 0.5rem;">SECURITY CLEARANCE</span>
+              <span style="font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">FEDERAL CLEARANCE L-3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. BORDER PROTECTION SECTION -->
+    <section class="section" id="border-protection" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 5;">
+            <div class="section-label">03 // PERIMETER SECURE</div>
+            <h2>Border Protection</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              Sealing sovereign boundaries using virtual fences, infrared camera outposts, acoustic decibel sensors, and automated takeoff rails for immediate interception.
+            </p>
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); display: block; margin-bottom: 0.5rem;">MONITORING MODE</span>
+              <span style="font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">PERSISTENT 24/7 AUTONOMOUS GATE</span>
+            </div>
+          </div>
+
+          <div class="fade-up" style="grid-column: span 7;">
+            <img src="assets/border_ind.webp" alt="Border Protection Systems" style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MARITIME SECTION -->
+    <section class="section" id="maritime-domain">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 7;">
+            <img src="assets/maritime_ind.webp" alt="Maritime Domain Surveillance" style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+          </div>
+
+          <div class="fade-up" style="grid-column: span 5; padding-left: 2rem;">
+            <div class="section-label">04 // COASTAL & OCEANIC</div>
+            <h2>Maritime Command</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              Deploying acoustic subsea anchors, coastal mapping VTOL aircraft, and unmanned surface logistics vessels to guarantee shipping lane protection and harbor security.
+            </p>
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); display: block; margin-bottom: 0.5rem;">OPERATIONAL CAPACITY</span>
+              <span style="font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">SEA STATE LEVEL 6 OPERATION</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CRITICAL INFRASTRUCTURE SECTION -->
+    <section class="section" id="critical-infrastructure" style="background: var(--bg-sec);">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 5;">
+            <div class="section-label">05 // ASSET PROTECTION</div>
+            <h2>Critical Infrastructure</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              Providing autonomous drone patrols and optical thermal grids to secure airport perimeters, high-capacity server campuses, and clean water processing facilities.
+            </p>
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); display: block; margin-bottom: 0.5rem;">PATROL FREQUENCY</span>
+              <span style="font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">10-MINUTE RECURRING EDGE SWEEPS</span>
+            </div>
+          </div>
+
+          <div class="fade-up" style="grid-column: span 7;">
+            <img src="assets/mining_ind.webp" alt="Critical Infrastructure Patrols" style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ENERGY & UTILITIES SECTION -->
+    <section class="section" id="energy-utilities">
+      <div class="container">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 7;">
+            <img src="assets/energy_ind.webp" alt="Energy & Utilities Drone Scans" style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+          </div>
+
+          <div class="fade-up" style="grid-column: span 5; padding-left: 2rem;">
+            <div class="section-label">06 // INDUSTRIAL SECURITY</div>
+            <h2>Energy Utilities</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+              Securing high-voltage power networks, nuclear containment domes, and offshore gas rigs. Automated flight systems report leak vectors and detect metallic structural wear instantly.
+            </p>
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+              <span style="font-family: 'IBM Plex Sans', monospace; font-size: 0.7rem; color: var(--text-sec); display: block; margin-bottom: 0.5rem;">SPECIALIZED UTILITIES PACK</span>
+              <span style="font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; text-transform: uppercase;">INFRARED FLIGHT PACK AV-4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COMBINED EMERGENCY RESPONSE & ALLIANCE CTA SECTION -->
+    <section class="section" id="emergency-cta" style="background: var(--bg-sec);">
+      <div class="blueprint-grid" style="opacity: 0.15;"></div>
+      <div class="container" style="z-index: 3; position: relative;">
+        <div class="editorial-grid" style="align-items: center;">
+          <div class="fade-up" style="grid-column: span 6;">
+            <div class="section-label">07 // SEARCH & RESCUE</div>
+            <h2>Emergency Response</h2>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem; max-width: 480px;">
+              Deploying heavy logistics aircraft carrying blood packages, emergency medicines, and high-spec search radars directly into landslide zones and flood basins.
+            </p>
+          </div>
+          
+          <div class="fade-up" style="grid-column: span 6; border: 1px solid var(--border); background: var(--bg); border-radius: 12px; padding: 3rem; text-align: center;">
+            <div class="section-label" style="justify-content: center;">08 // ALLIANCE PORTAL</div>
+            <h3 style="text-transform: uppercase; margin-bottom: 1.5rem;">Strategic Cooperation</h3>
+            <p style="margin-bottom: 2.5rem; font-size: 0.95rem;">
+              Submit technical requirements to initiate custom airframe prototyping with our aerospace engineering division.
+            </p>
+            <a href="404.html" class="btn btn-primary hover-target">Request Sector Briefing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="stackly logo.webp" alt="Stackly" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 0.5rem; display: block;">
+        <p>Next-generation autonomous aerospace, intelligence grids, and perimeter defense software.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="Twitter / X">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="404.html" class="hover-target" style="color: var(--text);" title="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Quick Links</h3>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="hover-target">Home</a></li>
+          <li><a href="solutions.html" class="hover-target">Solutions</a></li>
+          <li><a href="industries.html" class="hover-target">Industries</a></li>
+          <li><a href="about.html" class="hover-target">About</a></li>
+          <li><a href="contact.html" class="hover-target">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Sectors</h3>
+        <ul class="footer-links-list">
+          <li><a href="404.html" class="hover-target">Armed Forces</a></li>
+          <li><a href="404.html" class="hover-target">Border Outposts</a></li>
+          <li><a href="404.html" class="hover-target">Energy Infrastructure</a></li>
+          <li><a href="404.html" class="hover-target">Maritime Command</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-links-title">Contact Us</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text); font-weight: 600;">+91 74880 99999</p>
+        <p style="font-size: 0.9rem; margin-bottom: 1rem;"><a href="404.html" class="hover-target" style="color: var(--text-sec); text-decoration: none;">info@stackly.com</a></p>
+        <p style="font-size: 0.85rem; color: var(--text-sec); line-height: 1.5; font-family: var(--font-body);">
+          MMR Complex, Salem - 636 003,<br>
+          Tamil Nadu, India
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+ 
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Stackly. All rights reserved. Sovereign defense manufacturing.</span>
+      <div style="display: flex; gap: 2rem;">
+        <a href="404.html" class="hover-target" style="text-decoration: none; font-size: 0.8rem; color: var(--text-sec);">R&D Lab</a>
+        <a href="404.html" class="hover-target" style="text-decoration: none; font-size: 0.8rem; color: var(--text-sec);">Terms of Clearance</a>
+      </div>
+    </div>
+    <div class="footer-watermark">DOMAINS</div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/industries_drone.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+<script src=js/auth.js></script><script>document.addEventListener('DOMContentLoaded',function(){updateNavAuth();});</script></body>
+</html>
