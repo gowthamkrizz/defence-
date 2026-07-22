@@ -235,8 +235,17 @@
     updateResponsiveCamera();
   }
 
+  let isVisible = true;
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    }, { threshold: 0.05 });
+    obs.observe(container);
+  }
+
   function animate() {
     requestAnimationFrame(animate);
+    if (!isVisible) return;
 
     const time = Date.now();
     const isMobile = window.innerWidth < 768;

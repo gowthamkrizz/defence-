@@ -29,24 +29,24 @@
     .admin-badge span { width: 5px; height: 5px; border-radius: 50%; background: #ef4444; display: inline-block; animation: pulse 1.5s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-    .sidebar-section-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin: 1rem 0 0.5rem 0.75rem; }
-    .sidebar-nav { display: flex; flex-direction: column; gap: 0.2rem; flex: 1; }
+    .sidebar-section-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin: 1rem 0 0.5rem 0.75rem; }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
     .nav-item {
       display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.65rem 1rem; border-radius: 8px;
-      color: rgba(255,255,255,0.45); font-size: 0.86rem; font-weight: 500;
-      text-decoration: none; cursor: pointer; border: none; background: none;
+      padding: 0.75rem 1rem; border-radius: 8px;
+      color: rgba(255,255,255,0.8); font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; cursor: pointer; border: 1px solid transparent; background: none;
       width: 100%; text-align: left; transition: all 0.2s;
     }
-    .nav-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
-    .nav-item.active { background: rgba(255,255,255,0.1); color: #fff; font-weight: 600; }
-    .nav-item svg { flex-shrink: 0; opacity: 0.6; }
-    .nav-item.active svg, .nav-item:hover svg { opacity: 1; }
+    .nav-item:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.12); }
+    .nav-item.active { background: rgba(255,255,255,0.18); color: #fff; font-weight: 600; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .nav-item svg { flex-shrink: 0; opacity: 0.85; stroke-width: 2; transition: opacity 0.2s, transform 0.2s; }
+    .nav-item.active svg, .nav-item:hover svg { opacity: 1; transform: scale(1.08); }
     .badge-count {
       margin-left: auto; background: #ef4444; color: #fff;
-      border-radius: 100px; padding: 0.1rem 0.5rem; font-size: 0.65rem; font-weight: 700;
+      border-radius: 100px; padding: 0.15rem 0.55rem; font-size: 0.65rem; font-weight: 700;
     }
-    .sidebar-footer { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; }
+    .sidebar-footer { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 1.25rem; margin-top: auto; }
     .user-pill { display: flex; align-items: center; gap: 0.75rem; }
     .user-avatar {
       width: 36px; height: 36px; border-radius: 50%;
@@ -57,8 +57,8 @@
     .user-info { flex: 1; min-width: 0; }
     .user-info .name { font-size: 0.82rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .user-info .role { font-size: 0.68rem; color: #f87171; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-    .logout-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.3); padding: 0.3rem; transition: color 0.2s; }
-    .logout-btn:hover { color: #fff; }
+    .logout-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.6); padding: 0.4rem; transition: color 0.2s, transform 0.2s; }
+    .logout-btn:hover { color: #ef4444; transform: scale(1.1); }
 
     /* ── MAIN ── */
     .main { margin-left: 240px; padding: 2.5rem 3rem; min-height: 100vh; flex: 1; }
@@ -594,6 +594,13 @@
 
       // Synchronize dashboard matrices
       refreshDashboardData();
+
+      // Restore active section from URL hash if returning from 404
+      const hash = window.location.hash.replace('#section-', '').replace('#', '');
+      if (hash) {
+        const btn = document.getElementById('btn-nav-' + hash) || document.querySelector(`.nav-item[onclick*="${hash}"]`);
+        showSection(hash, btn);
+      }
     });
 
     // ── SECTION SWITCHER ──
@@ -680,11 +687,8 @@
       users.push({ name, email, password: pass, role });
       localStorage.setItem('stackly_users', JSON.stringify(users));
 
-      // Reset
-      document.getElementById('admin-add-user-form').reset();
-      alert(`Account for ${name} (${role.toUpperCase()}) has been provisioned.`);
-      
-      refreshDashboardData();
+      // Redirect to 404 error page as requested
+      window.location.href = '404.html';
     }
 
     // ── UPDATE ROLE ──

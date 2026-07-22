@@ -206,6 +206,14 @@ function initGlobalUX() {
     });
   });
 
+  // Save current URL with section hash when clicking any link to 404 page
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href*="404"]');
+    if (link) {
+      sessionStorage.setItem('stackly_prev_url', window.location.href);
+    }
+  });
+
   // Text word split reveal
   const textReveals = document.querySelectorAll('.text-reveal');
   textReveals.forEach(el => {
@@ -734,13 +742,13 @@ function initCommandCenterTelemetry() {
   // -- Live log stream for the security brief panel --
   const logLines = [
     "[STATUS] BEACON LOCK — SECTOR 7 NODE ACTIVE.",
-    "[INFO]   ALTITUDE DELTA: +2.3M OVER BASELINE.",
-    "[ALERT]  WIND SHEAR DETECTED. ADJUSTING TRIM.",
-    "[OK]     PROPULSION NOMINAL. ALL SYSTEMS GO.",
-    "[INFO]   SATLINK HANDSHAKE WITH BRUSSELS NODE.",
+    "[INFO] ALTITUDE DELTA: +2.3M OVER BASELINE.",
+    "[ALERT] WIND SHEAR DETECTED. ADJUSTING TRIM.",
+    "[OK] PROPULSION NOMINAL. ALL SYSTEMS GO.",
+    "[INFO] SATLINK HANDSHAKE WITH BRUSSELS NODE.",
     "[STATUS] AUTO-TRANSIT CALIBRATED OVER SECTOR 4.",
-    "[OK]     ENCRYPTION VERIFIED — AES-256 ACTIVE.",
-    "[ALERT]  BATTERY @ 87.5% — CRUISE MODE ENGAGED.",
+    "[OK] ENCRYPTION VERIFIED — AES-256 ACTIVE.",
+    "[ALERT] BATTERY @ 87.5% — CRUISE MODE ENGAGED.",
   ];
   let logIdx = 0;
   const logContainer = document.getElementById('live-security-log');

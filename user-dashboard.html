@@ -13,42 +13,46 @@
     /* ── SIDEBAR ── */
     .sidebar {
       position: fixed; top: 0; left: 0; bottom: 0; width: 240px;
-      background: #000; display: flex; flex-direction: column; padding: 2rem 1.25rem;
-      z-index: 100;
+      background: #0a0a0a; border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex; flex-direction: column; padding: 1.75rem 1.25rem;
+      z-index: 100; overflow-y: auto;
     }
-    .sidebar-logo { margin-bottom: 2.5rem; padding: 0 0.5rem; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+    .sidebar-logo { margin-bottom: 2rem; padding: 0 0.5rem; }
     .sidebar-logo img { height: 30px; }
     .sidebar-section-title {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(255,255,255,0.2);
-      margin: 1.25rem 0 0.4rem 0.75rem;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      margin: 1.25rem 0 0.5rem 0.75rem;
     }
-    .sidebar-nav { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
     .nav-item {
       display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.65rem 0.9rem; border-radius: 9px;
-      color: rgba(255,255,255,0.45); font-size: 0.86rem; font-weight: 500;
-      text-decoration: none; cursor: pointer; border: none; background: none;
-      width: 100%; text-align: left; transition: all 0.18s;
+      padding: 0.75rem 1rem; border-radius: 9px;
+      color: rgba(255,255,255,0.8); font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; cursor: pointer; border: 1px solid transparent; background: none;
+      width: 100%; text-align: left; transition: all 0.2s ease;
     }
-    .nav-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
-    .nav-item.active { background: rgba(255,255,255,0.12); color: #fff; font-weight: 600; }
-    .nav-item svg { flex-shrink: 0; opacity: 0.55; transition: opacity 0.18s; }
-    .nav-item:hover svg, .nav-item.active svg { opacity: 1; }
-    .nav-badge { margin-left: auto; background: #ef4444; color: #fff; border-radius: 100px; padding: 0.1rem 0.5rem; font-size: 0.63rem; font-weight: 700; }
+    .nav-item:hover { background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.12); }
+    .nav-item.active { background: rgba(255,255,255,0.18); color: #ffffff; font-weight: 600; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .nav-item svg { flex-shrink: 0; opacity: 0.85; stroke-width: 2; transition: opacity 0.2s, transform 0.2s; }
+    .nav-item:hover svg, .nav-item.active svg { opacity: 1; transform: scale(1.08); }
+    .nav-badge { margin-left: auto; background: #ef4444; color: #fff; border-radius: 100px; padding: 0.15rem 0.55rem; font-size: 0.65rem; font-weight: 700; }
 
-    .sidebar-footer { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; }
+    .sidebar-footer { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 1.25rem; margin-top: auto; }
     .user-pill { display: flex; align-items: center; gap: 0.75rem; }
     .user-avatar {
-      width: 34px; height: 34px; border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.82rem; color: #fff; flex-shrink: 0;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; color: #fff; flex-shrink: 0;
     }
-    .user-info .name { font-size: 0.8rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
-    .user-info .role-tag { font-size: 0.67rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; }
-    .logout-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.3); padding: 0.3rem; transition: color 0.2s; margin-left: auto; }
-    .logout-btn:hover { color: #fff; }
+    .user-info .name { font-size: 0.82rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+    .user-info .role-tag { font-size: 0.68rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; }
+    .logout-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.6); padding: 0.4rem; transition: color 0.2s, transform 0.2s; margin-left: auto; }
+    .logout-btn:hover { color: #ef4444; transform: scale(1.1); }
 
     /* ── MAIN ── */
     .main { margin-left: 240px; padding: 2.5rem 2.5rem; min-height: 100vh; flex: 1; }
@@ -135,12 +139,16 @@
     .solution-status.available { color: #2563eb; }
     .solution-status.coming { color: #d97706; }
     .solution-btn {
-      width: 100%; padding: 0.6rem; border: 1px solid #e5e5e5; border-radius: 8px;
+      width: 100%; padding: 0.65rem; border: 1px solid #e5e5e5; border-radius: 8px;
       font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.05em; background: #fafafa; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.05em; background: #fafafa; color: #000; cursor: pointer;
       transition: all 0.2s;
     }
-    .solution-btn:hover { background: #000; color: #fff; border-color: #000; }
+    .solution-btn:hover:not(:disabled) { background: #000; color: #fff; border-color: #000; }
+    .solution-btn:disabled {
+      background: #eef1f5; color: #4b5563; border: 1px solid #cbd5e1;
+      cursor: not-allowed; opacity: 1; font-weight: 700;
+    }
 
     /* ── SUPPORT / CONTACT FORM ── */
     .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -613,14 +621,14 @@
           <h3>Edge AI Processing Module</h3>
           <p>On-board AI module for real-time decision-making without cloud dependency. Works in signal-denied environments.</p>
           <div class="solution-status coming">◐ Coming Q4 2026</div>
-          <button class="solution-btn" disabled style="opacity: 0.5; cursor: not-allowed;">Unavailable</button>
+          <button class="solution-btn" disabled>Unavailable</button>
         </div>
         <div class="solution-card">
           <div class="solution-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <h3>Cryptographic Comms Suite</h3>
           <p>Military-grade AES-256 encrypted communication stack. Compatible with all Stackly platforms and third-party systems.</p>
           <div class="solution-status coming">◐ Coming Q1 2027</div>
-          <button class="solution-btn" disabled style="opacity: 0.5; cursor: not-allowed;">Unavailable</button>
+          <button class="solution-btn" disabled>Unavailable</button>
         </div>
       </div>
 
@@ -782,6 +790,13 @@
 
       // Animate bars & circles after short delay
       setTimeout(animateMetrics, 400);
+
+      // Restore active section from URL hash if returning from 404
+      const hash = window.location.hash.replace('#section-', '').replace('#', '');
+      if (hash) {
+        const btn = document.querySelector(`.nav-item[onclick*="${hash}"]`);
+        showSection(hash, btn);
+      }
     });
 
     // ── SECTION SWITCHER ──

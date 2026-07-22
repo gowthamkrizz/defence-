@@ -119,7 +119,7 @@
               <a href="index.html" class="btn btn-primary hover-target" style="display: flex; align-items: center; gap: 0.5rem;">
                 <i data-lucide="arrow-left" style="width:16px; height:16px;"></i> Return to Base
               </a>
-              <a href="index.html" onclick="if (window.history.length > 1 && document.referrer && document.referrer.indexOf(window.location.host) !== -1) { history.back(); return false; }" class="btn btn-secondary hover-target">Back to Previous</a>
+              <a href="#" onclick="return goBackToPrevious(event);" class="btn btn-secondary hover-target">Back to Previous</a>
             </div>
           </div>
           
@@ -169,6 +169,25 @@
   <!-- Canvas Script & Interaction -->
   <script>
     if (window.lucide) lucide.createIcons();
+
+    function goBackToPrevious(e) {
+      if (e) e.preventDefault();
+      if (window.history.length > 1) {
+        window.history.back();
+        return false;
+      }
+      const savedUrl = sessionStorage.getItem('stackly_prev_url');
+      if (savedUrl && savedUrl.indexOf('404.html') === -1) {
+        window.location.href = savedUrl;
+        return false;
+      }
+      if (document.referrer && document.referrer.indexOf('404.html') === -1) {
+        window.location.href = document.referrer;
+        return false;
+      }
+      window.location.href = 'index.html';
+      return false;
+    }
 
     // 404 Radar Canvas animation
     (function init404Canvas() {
