@@ -174,21 +174,11 @@ function initSmoothScroll() {
    GLOBAL UX INTERACTIONS
    ========================================================================= */
 function initGlobalUX() {
-  // Navbar Hide / Show on Scroll
+  // Navbar fixed at top (always visible while scrolling)
   const navbar = document.querySelector('.navbar');
-  let lastScrollY = 0;
-
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    
-    if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-      navbar.classList.add('nav-hidden');
-    } else {
-      navbar.classList.remove('nav-hidden');
-    }
-    
-    lastScrollY = currentScrollY;
-  });
+  if (navbar) {
+    navbar.classList.remove('nav-hidden');
+  }
 
   // Magnetic Button Effect
   const magneticBtns = document.querySelectorAll('.btn-primary, .btn-secondary, .magnetic-btn');
@@ -958,8 +948,11 @@ function initPageTransitions() {
   const links = document.querySelectorAll("a[href$='.html']");
   links.forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
+      if (e.metaKey || e.ctrlKey || e.shiftKey || link.target === '_blank') return;
       const targetUrl = link.getAttribute('href');
+      if (!targetUrl || targetUrl === '#' || targetUrl.startsWith('javascript:')) return;
+
+      e.preventDefault();
 
       // Slide transition layer up
       gsap.to(transitionOverlay, {
@@ -980,6 +973,11 @@ function initPageTransitions() {
     duration: 0.6,
     delay: 0.2,
     ease: "power3.inOut"
+  });
+
+  // Handle BFCache restore & browser back navigation (prevents empty screen)
+  window.addEventListener('pageshow', (event) => {
+    gsap.set(transitionOverlay, { yPercent: 100 });
   });
 }
 

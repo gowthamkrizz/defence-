@@ -291,7 +291,7 @@ p {
 }
 
 .navbar.nav-hidden {
-  transform: translateY(-100%);
+  transform: translateY(0);
 }
 
 .nav-logo {
